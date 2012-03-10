@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <libxml/tree.h>
+#import <libxml/HTMLparser.h>
 
 @class DDXMLDocument;
 

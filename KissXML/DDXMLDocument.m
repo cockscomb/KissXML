@@ -91,7 +91,18 @@
 	// Therefore, we call it again here just to be safe.
 	xmlKeepBlanksDefault(0);
 	
-	xmlDocPtr doc = xmlParseMemory([data bytes], [data length]);
+	xmlDocPtr doc;
+    if (mask == DDXMLDocumentHTMLKind) {
+        doc = htmlReadMemory(
+                             [data bytes], [data length],
+                             "", NULL, 0
+                             ); 
+    } else {
+        doc = xmlReadMemory(
+                            [data bytes], [data length],
+                            "", NULL, 0
+                            );
+    }
 	if (doc == NULL)
 	{
 		if (error) *error = [NSError errorWithDomain:@"DDXMLErrorDomain" code:1 userInfo:nil];
